@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+    <style>
+        
+        body {
+            /* background-image: url('/static/image2.jpg.jpg'); */
+            background-color: rgb(16, 192, 231);
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            height: auto;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.0);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(126, 22, 22, 0.0);
+            padding: 30px;
+            width: 500px;
+        }
+
+        h1 {
+            color: #c307e9;
+            text-align: center;
+        }
+
+        div {
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: rgba(0, 0, 0, 0.878);
+            display: block;
+            margin-bottom: 0px;
+            font-weight: bold;
+        }
+
+        input, select {
+            background-color: rgba(255, 255, 255, 0.1);
+            width: calc(100% - 24px);
+            padding: 12px;
+            box-sizing: border-box;
+            border: 0px solid rgb(113, 10, 106);
+            box-shadow: 0 0 20px rgba(126, 22, 22, 0.7);
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 25px;
+            margin-top: 25px;
+            transition: all 0.1s ease;
+        }
+        /* Hover effect for the submit button */
+        input[type="submit"]:hover {
+            background-color: #45a049; 
+        }
+
+        .required-star {
+            color: #ff0000;
+            margin-left: 3px;
+        }
+        .tag {
+            background-color: rgb(19, 18, 15);
+            color: #fff;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-right: 5px;
+            margin-top: 5px;
+            display: inline-block;
+            transition: all 0.1s ease;
+        }
+
+        .tag.selected {
+            background-color: rgb(175, 140, 24);
+            transform: scale(0.8);
+        }
+        .error-message {
+            color: #ff0000;
+            margin-top: 5px;
+        }
+        textarea {
+            background-color: rgba(255, 255, 255, 0.1);
+            width: calc(100% - 24px);
+            padding: 12px;
+            box-sizing: border-box;
+            border: 0px solid rgb(113, 10, 106);
+            box-shadow: 0 0 20px rgba(126, 22, 22, 0.7);
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        .home-button {
+            position: fixed;
+            top: 10px; /* Adjust the top position as needed */
+            left: 10px; /* Adjust the left position as needed */
+            display: inline-block;
+            padding: 10px;
+            background-color: #ffb700;
+            color: #0c0404;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .view-button {
+            position: fixed;
+            top: 10px;
+            left: 100px; 
+            display: inline-block;
+            padding: 10px;
+            background-color: #ffb700;
+            color: #0c0404;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+
+    </style>
+</head>
+
+
+<body>
+    <a href="/" class="home-button">HOME</a>
+    <a href="/view" class="view-button">VIEW DATA</a>
+
+
+   <form action="/form" method="post" onsubmit="return validateForm() && capitalizeFirstLetter() && validateForm()">
+        <h1>WHAT ARE YOU?</h1>
+
+        <div>
+            <label for="name">FULL NAME <span class="required-star">*</span></label>
+            <input type="text" required name="name" id="name" placeholder="Tash Petershon">
+        </div>
+
+        <div>
+            <label for="email">EMAIL <span class="required-star">*</span></label>
+            <input type="email" required name="email" id="email" placeholder="example@example.com">
+        </div>
+
+        <div>
+            <label for="mobile">MOBILE</label>
+            <input type="tel" name="mobile" id="mobile" placeholder="+17832823731">
+        </div>
+
+        <div>
+            <label for="city">CITY </label>
+            <input type="text" name="city" id="city" placeholder="Amsterdam">
+        </div>
+
+        <div>
+            <label for="country">COUNTRY <span class="required-star">*</span></label>
+            <input type="text" required name="country" id="country" placeholder="Netherlands">
+        </div>
+
+        <div>
+            <label for="profession">PROFESSION</label>
+            <input type="text" name="profession" id="profession" placeholder="laying on bed">
+        </div>
+
+        <div>
+            <label for="social_media">ANY SOCIAL MEDIA LINK</label>
+            <input type="text" name="social_media" id="social_media" placeholder="fb,insta,twitter etc" >
+        </div>
+
+        <div style="margin-top: 50px;" class="checkbox-group">
+            <label> SELECT INTERESTS <span class="required-star">*</span></label><br>
+            <span class="tag" onclick="toggleTag(this)">I am Vegan</span>
+            <span class="tag" onclick="toggleTag(this, 'antinatalist')">I am Antinatalist</span>
+            <span class="tag" onclick="toggleTag(this, 'efilist')">Efilism</span>
+            <span class="tag" onclick="toggleTag(this, 'atheist')">Atheist</span>
+            <span class="tag" onclick="toggleTag(this, 'depression')">Depression</span>
+            <span class="tag" onclick="toggleTag(this, 'anxiety')">Anxiety</span>
+            <span class="tag" onclick="toggleTag(this, 'science')">science</span>
+            <span class="tag" onclick="toggleTag(this, 'parents')">I hate my Parents</span>
+            <input type="hidden" name="interests" id="selected_interests" value="">
+            <div id="tag-error" class="error-message"></div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <label for="comment">YOUR COMMENT</label>
+            <textarea name="comment" id="comment" placeholder="anything u want to tell about you or about anything...?"rows="4" cols="50"></textarea>
+        </div>
+        
+
+
+
+        <script>
+            function toggleTag(tag, value) {
+                tag.classList.toggle("selected");
+                updateSelectedInterests();
+            }
+
+            function updateSelectedInterests() {
+                const selectedTags = document.querySelectorAll('.tag.selected');
+                const selectedValues = Array.from(selectedTags).map(tag => tag.textContent.trim());
+                document.getElementById('selected_interests').value = selectedValues.join(', ');
+            }
+
+            function validateForm() {
+                const selectedTags = document.querySelectorAll('.tag.selected');
+                const tagError = document.getElementById('tag-error');
+
+                if (selectedTags.length === 0) {
+                    tagError.textContent = 'Please select at least one tag.';
+                    return false;
+                } else {
+                    tagError.textContent = '';
+                    return true;
+                }
+            }
+
+            
+        </script>
+
+
+
+        <div style="margin-top: 50px;">
+            <label for="friend_ask">Are you finding similar people and want to live with like minded people? <span class="required-star">*</span></label>
+            <select id="friend_ask" name="friend_ask" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <label for="privacy_ask">Can I share this info with similar type people? <span class="required-star">*</span></label>
+            <select id="privacy_ask" name="privacy_ask" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+
+
+        <input type="submit" value="Submit">
+
+    </form>
+</body>
+</html>

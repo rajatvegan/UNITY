@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>form submitted</title>
+        <style>
+            h1 {
+                font-size: 15px;
+                font-style: italic;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <p>YOUR DATA HAS BEEN SUBMITTED!</p>
+        <div>
+            <p>TOTAL PEOPLE COUNT ON EARTH: {{ total_count }}</p>
+            <p>TOTAL PEOPLE IN {{form['country']}}: {{ count_country }}</p>
+            <p>TOTAL PEOPLE IN {{form['city']}}: {{ count_city }}</p>
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <td colspan="4">
+                            <p>PEOPLE IN {{ form['city'] }}:</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                        <th>SOCIAL MEDIA</th>
+                        <th>INTERESTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for people in people_city %}
+                        <tr>
+                            <td>{{ people.name }}</td>
+                            <td>{{ people.email }}</td>
+                            <td>{{ people.social_media }}</td>
+                            <td>{{ people.interests }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <td colspan="4">
+                            <p>PEOPLE IN {{ form['country'] }}:</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                        <th>SOCIAL MEDIA</th>
+                        <th>INTERESTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for people in people_country %}
+                        <tr>
+                            <td>{{ people.name }}</td>
+                            <td>{{ people.email }}</td>
+                            <td>{{ people.social_media }}</td>
+                            <td>{{ people.interests }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <table border="1">
+                <thead><tr>
+                        <td colspan="4">
+                            <p>PEOPLE WHO HAVE SIMILAR INTERESTS: {{ form['interests'] }}:</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                        <th>SOCIAL MEDIA</th>
+                        <th>CITY</th>
+                        <th>INTERESTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for person in people_interests %}
+                        <tr>
+                            <td>{{ person.name }}</td>
+                            <td>{{ person.email }}</td>
+                            <td>{{ person.social_media }}</td>
+                            <td>{{ person.city }}</td>
+                            <td>{{ person.interests }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+
+
+        <!-- <div>
+        <h1>FULL NAME</h1>
+        <div>{{form['name']}}</div>
+
+        <h1>EMAIL</h1>
+        <div>{{form['email']}}</div>
+
+        <h1>MOBILE</h1>
+        <div>{{form['mobile'] or 'NA'}}</div>
+
+        <h1>CITY</h1>
+        <div>{{form['city'] or 'NA'}}</div>
+
+        <h1>COUNTRY</h1>
+        <div>{{form['country']}}</div>
+
+        <h1>PROFESSION</h1>
+        <div>{{form['profession'] or 'NA'}}</div>
+
+        <h1>YOUR SOCIAL MEDIA LINK</h1>
+        <div>{{form['social_media'] or 'NA'}}</div>
+
+        <h1>YOUR INTERESTS</h1>
+        <div>{{form['interests']}}</div>
+
+        <h1>YOUR COMMENT</h1>
+        <div>{{form['comment']}}</div>
+
+        <h1>Are you finding similar people and want to live with like minded people?</h1>
+        <div>{{form['friend_ask']}}</div>
+
+        <h1>CAN I SHARE YOUR DATA WITH OTHERS?</h1>
+        <div>{{form['privacy_ask']}}</div>
+        </div> -->
+
+    </body>
+</html>
