@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 from database import  add_data_to_db,  execute_query1, execute_query2
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='/static')
 
 
 @app.route("/")
