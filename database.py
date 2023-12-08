@@ -3,7 +3,11 @@
 
 from sqlalchemy import create_engine, text
 
-engine = create_engine("mysql+pymysql://rajatvegan:Rajat.vegan1@localhost/mydb?charset=utf8mb4")
+# engine = create_engine("mysql+pymysql://rajatvegan:Rajat.vegan1@localhost/mydb?charset=utf8mb4")
+engine = create_engine("mysql+pymysql://wta1zlv42ok0jt7ad7w7:pscale_pw_Hm28awu4bmXXOOdWuPa0rZg1fDPUNbrpFvk89HlmX9V@aws.connect.psdb.cloud/mydb?charset=utf8mb4",
+                       connect_args={
+                           "ssl":{"ssl_ca": "/etc/ssl/certs/ca-certificates.crt"}
+                       })
 
 
 
