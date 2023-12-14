@@ -1,0 +1,6 @@
+version : "3.3"
+services :
+  web :
+     image : rajatvegan/unity-app:latest
+     ports :
+         - "80:80"
