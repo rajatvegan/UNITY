@@ -5,7 +5,7 @@ pipeline {
         stage("Clone Code"){
             steps {
                 echo "Cloning the code"
-                git url:"https://github.com/rajatvegan/UNITY.git", branch: "main"
+                git credentialsId:"github", url:"https://github.com/rajatvegan/UNITY.git", branch: "main"
             }
         }
         stage("Build"){
