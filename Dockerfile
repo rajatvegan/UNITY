@@ -23,4 +23,4 @@ RUN apt-get update && apt-get install -y nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Start the nginx server and the Flask app
-CMD service nginx start && python app.py
+CMD service nginx start
