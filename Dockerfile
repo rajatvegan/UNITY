@@ -14,7 +14,7 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 COPY . /app
 
 # Expose port 80 for the nginx server
-EXPOSE 80
+# EXPOSE 80
 
 # Install nginx
 RUN apt-get update && apt-get install -y nginx
