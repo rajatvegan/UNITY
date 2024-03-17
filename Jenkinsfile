@@ -1,5 +1,5 @@
 pipeline {
-    agent server1
+    agent {label 'server1'}
     
     stages{
         stage('Cleanup Workspace'){
