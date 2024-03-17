@@ -3,3 +3,4 @@ pymysql
 SQLAlchemy
 gunicorn
 waitress
+pytest
