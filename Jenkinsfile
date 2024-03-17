@@ -14,6 +14,13 @@ pipeline {
                 git credentialsId:"github-token", url:"https://github.com/rajatvegan/UNITY.git", branch: "main"
             }
         }
+        
+        stage("installing docker"){
+            steps {
+                sh "sudo apt install docker.io"
+                sh "sudo apt install docker-compose"
+            }
+        }
 
         stage("Build"){
             steps {
