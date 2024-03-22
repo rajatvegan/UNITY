@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp-container
+        image: rajatvegan/unity-app:latest
+        ports:
+        - containerPort: 800
+      imagePullSecrets:
+      - name: dockerhub-secret  # Reference the Docker Hub Secret here
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  selector:
+    app: myapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 800  # Adjust the target port to match the container port
+  type: LoadBalancer  # Expose the service externally

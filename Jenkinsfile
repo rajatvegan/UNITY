@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'server1'}
+    agent {label 'default'}
     
     stages{
         stage('Cleanup Workspace'){
@@ -14,7 +14,7 @@ pipeline {
                 git credentialsId:"github-token", url:"https://github.com/rajatvegan/UNITY.git", branch: "main"
             }
         }
-        
+
         stage("installing docker"){
             steps {
                 sh "sudo apt install docker.io"
@@ -45,6 +45,13 @@ pipeline {
                 echo "Deploying the container"
                 sh "docker-compose down && docker-compose up -d"
                 
+            }
+        }
+
+        stage("deploy to aws eks"){
+            steps {
+                echo "deploying the pods"
+                sh "kubectl apply -f deployment-service.yml"
             }
         }
     }
