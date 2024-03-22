@@ -15,12 +15,12 @@ pipeline {
             }
         }
 
-        stage("installing docker"){
-            steps {
-                sh "sudo apt install docker.io"
-                sh "sudo apt install docker-compose"
-            }
-        }
+        // stage("installing docker"){
+        //     steps {
+        //         sh "sudo apt install docker.io"
+        //         sh "sudo apt install docker-compose"
+        //     }
+        // }
 
         stage("Build"){
             steps {
