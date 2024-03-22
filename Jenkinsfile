@@ -17,8 +17,8 @@ pipeline {
 
         stage("installing docker"){
             steps {
-                sh "apt install docker.io"
-                sh "apt install docker-compose"
+                sh "sudo apt install docker.io"
+                sh "sudo apt install docker-compose"
             }
         }
 
