@@ -52,8 +52,10 @@ pipeline {
             steps {
                 echo "deploying the pods"
                 sh "cd /var/lib/jenkins/workspace/declarative-pipeline"
-                kubeconfig(credentialsId: 'eks1', serverUrl: ''){
+                schript{
+                    kubeconfig(credentialsId: 'eks1', serverUrl: ''){
                     sh "kubectl apply -f deployment-service.yml"
+                }
                 }
             }
         }
