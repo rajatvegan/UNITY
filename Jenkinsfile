@@ -40,13 +40,13 @@ pipeline {
             }
         }
 
-        stage("Deploy"){
-            steps {
-                echo "Deploying the container"
-                sh "docker-compose down && docker-compose up -d"
+        // stage("Deploy"){
+        //     steps {
+        //         echo "Deploying the container"
+        //         sh "docker-compose down && docker-compose up -d"
                 
-            }
-        }
+        //     }
+        // }
 
         stage("deploy to aws eks"){
             steps {
