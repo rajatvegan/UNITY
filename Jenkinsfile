@@ -51,7 +51,8 @@ pipeline {
         stage("deploy to aws eks"){
             steps {
                 echo "deploying the pods"
-                sh "kubectl apply -f /var/lib/jenkins/workspace/declarative-pipeline/deployment-service.yml"
+                sh "cd /var/lib/jenkins/workspace/declarative-pipeline"
+                sh "kubectl apply -f deployment-service.yml"
             }
         }
     }
