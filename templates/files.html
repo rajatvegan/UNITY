@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload and Download</title>
+</head>
+<body>
+    <h1>Upload File</h1>
+    <form action="/files" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" id="file">
+        <button type="submit">Upload</button>
+    </form>
+
+    <h1>View Files</h1>
+    <ul>
+        {% for file in files %}
+            <li>
+                Filename: {{ file.filename }}<br>
+                Upload Date: {{ file.upload_date }}<br>
+                Format: {{ file.file_format }}<br>
+                Size: {{ file.file_size }} bytes<br>
+                <a href="/download/{{ file.file_id }}">Download</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

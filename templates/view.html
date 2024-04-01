@@ -30,5 +30,11 @@
             </tbody>
         </table>
     </div>
+    <h1>MongoDB Data</h1> <!-- Moved h1 tag within the body -->
+    <ul>
+        {% for document in documents %}
+            <li>{{ document }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

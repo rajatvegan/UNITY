@@ -52,7 +52,7 @@ pipeline {
             steps {
                 echo "deploying the pods"
                 script{
-                    kubeconfig(credentialsId: 'eks1', serverUrl: ''){
+                    kubeconfig(credentialsId: 'eks1-eks2', serverUrl: ''){
                     sh "kubectl apply -f deployment-service.yml"
                     }
                 }
