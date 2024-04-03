@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, request, send_file
 from database import  add_data_to_db,  execute_query1, execute_query2, configure_mongo, get_mongo_collection
 from gridfs import GridFS
-import os
+import os, subprocess
 from datetime import datetime
 
 app = Flask(__name__,static_url_path='/static')
@@ -17,6 +17,10 @@ def login():
 @app.route("/form")
 def form():
     return render_template('form.html')
+
+@app.route("/resume")
+def resume():
+    return render_template('resume.html')
 
 
 @app.route('/view')
@@ -101,16 +105,13 @@ def view_files():
     return render_template('files.html', files=file_data)
 
 
-
-
-
-
-
-
 @app.route('/download/<file_id>', methods=['GET'])
 def download_file(file_id):
+    print(f"File ID: {file_id}")  # Log the file_id
     fs = configure_mongo(app)
+    print(f"FS: {fs}")  # Log the fs object
     file = fs.get(file_id)
+    print(f"File: {file}")  # Log the file object
     if file:
         return send_file(file, attachment_filename=file.filename, as_attachment=True)
     else:
@@ -119,3 +120,7 @@ def download_file(file_id):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
+
+
+
+
