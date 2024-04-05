@@ -4,6 +4,3 @@ SQLAlchemy
 gunicorn
 waitress
 flask-pymongo
-pymongo
-gridfs
-urlparse
