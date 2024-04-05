@@ -3,4 +3,4 @@ services :
   web :
      image : rajatvegan/unity-app:latest
      ports :
-         - "80:800"
+         - "80:80"
