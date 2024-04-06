@@ -4,3 +4,4 @@ SQLAlchemy
 gunicorn
 waitress
 flask-pymongo
+flask-mail

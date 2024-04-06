@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #333;
+      color: #fff;
+    }
+
+    h1 {
+      color: #fff;
+      text-align: center;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #444;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: #555;
+      color: #fff;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #password-match-error {
+      color: red;
+      display: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Signup</h1>
+  <form onsubmit="return validateForm()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required minlength="6"><br><br>
+
+    <label for="confirm-password">Confirm Password:</label>
+    <input type="password" id="confirm-password" name="confirm-password" required oninput="checkPasswordMatch()"><br>
+    <span id="password-match-error">Passwords do not match</span><br><br>
+    
+    <input type="submit" value="Signup">
+  </form>
+
+  <script>
+    function checkPasswordMatch() {
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirm-password").value;
+      var passwordMatchError = document.getElementById("password-match-error");
+
+      if (password !== confirmPassword) {
+        passwordMatchError.style.display = "block";
+        return false;
+      } else {
+        passwordMatchError.style.display = "none";
+        return true;
+      }
+    }
+
+    function validateForm() {
+      if (!checkPasswordMatch()) {
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
