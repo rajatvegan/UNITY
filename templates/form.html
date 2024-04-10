@@ -121,14 +121,12 @@
             margin-bottom: 20px;
         }
 
-
     </style>
 </head>
 
 
 <body>
     <a href="/" class="home-button">HOME</a>
-
 
    <form action="/form" method="post" onsubmit="return validateForm() && capitalizeFirstLetter() && validateForm()">
         <h1>WHAT ARE YOU?</h1>
@@ -187,39 +185,6 @@
             <textarea name="comment" id="comment" placeholder="anything u want to tell about you or about anything...?"rows="4" cols="50"></textarea>
         </div>
         
-
-
-
-        <script>
-            function toggleTag(tag, value) {
-                tag.classList.toggle("selected");
-                updateSelectedInterests();
-            }
-
-            function updateSelectedInterests() {
-                const selectedTags = document.querySelectorAll('.tag.selected');
-                const selectedValues = Array.from(selectedTags).map(tag => tag.textContent.trim());
-                document.getElementById('selected_interests').value = selectedValues.join(', ');
-            }
-
-            function validateForm() {
-                const selectedTags = document.querySelectorAll('.tag.selected');
-                const tagError = document.getElementById('tag-error');
-
-                if (selectedTags.length === 0) {
-                    tagError.textContent = 'Please select at least one tag.';
-                    return false;
-                } else {
-                    tagError.textContent = '';
-                    return true;
-                }
-            }
-
-            
-        </script>
-
-
-
         <div style="margin-top: 50px;">
             <label for="friend_ask">Are you finding similar people and want to live with like minded people? <span class="required-star">*</span></label>
             <select id="friend_ask" name="friend_ask" required>
@@ -238,9 +203,9 @@
             </select>
         </div>
 
-
         <input type="submit" value="Submit">
 
     </form>
+    <script src="static/script.js" ></script>
 </body>
 </html>

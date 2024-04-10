@@ -19,7 +19,6 @@ def form():
 def resume():
     return render_template('resume.html')
 
-
 @app.route('/view')
 def view():
     
@@ -36,8 +35,6 @@ def view():
     results = collection.find() 
     documents = [document for document in results]
     return render_template("view.html", documents=documents, total_count=total_count, peoples=data_result, kanpur_count=city_count)
-
-
 
 
 @app.route("/form", methods=['POST'])
@@ -79,9 +76,6 @@ def upload_file():
     file_id = fs.put(file)
     return jsonify({'message': 'File uploaded successfully', 'file_id': str(file_id)}), 200
 
-
-
-
 @app.route('/files', methods=['GET'])
 def view_files():
     fs = configure_mongo(app)  # Configure MongoDB
@@ -100,7 +94,6 @@ def view_files():
         file_data.append(file_info)
 
     return render_template('files.html', files=file_data)
-
 
 @app.route('/download/<file_id>', methods=['GET'])
 def download_file(file_id):

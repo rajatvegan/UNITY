@@ -78,27 +78,6 @@
     <input type="submit" value="Signup">
   </form>
 
-  <script>
-    function checkPasswordMatch() {
-      var password = document.getElementById("password").value;
-      var confirmPassword = document.getElementById("confirm-password").value;
-      var passwordMatchError = document.getElementById("password-match-error");
-
-      if (password !== confirmPassword) {
-        passwordMatchError.style.display = "block";
-        return false;
-      } else {
-        passwordMatchError.style.display = "none";
-        return true;
-      }
-    }
-
-    function validateForm() {
-      if (!checkPasswordMatch()) {
-        return false;
-      }
-      return true;
-    }
-  </script>
+  <script src="static/script.js"></script>
 </body>
 </html>

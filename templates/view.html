@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for people in peoples %} <!-- Corrected variable name 'peoples' to 'people' -->
+                {% for people in peoples %}
                     <tr>
                         <td>{{ people.id }}</td>
                         <td>{{ people.name }}</td>
@@ -30,7 +30,8 @@
             </tbody>
         </table>
     </div>
-    <h1>MongoDB Data</h1> <!-- Moved h1 tag within the body -->
+
+    <h1>MongoDB Data</h1>
     <ul>
         {% for document in documents %}
             <li>{{ document }}</li>
