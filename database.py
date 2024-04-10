@@ -1,13 +1,6 @@
-# import sqlalchemy
-# print(sqlalchemy.__version__)
-
 from sqlalchemy import create_engine, text
 
-# engine = create_engine("mysql+pymysql://rajatvegan:Rajat.vegan1@localhost/mydb?charset=utf8mb4")
-engine = create_engine("mysql+pymysql://sufo95twbr9esaxdspon:pscale_pw_g1SaXdib2V2pK4YIBjlSl0O41wuRtt77kiHGILH390U@aws.connect.psdb.cloud/mydb?charset=utf8mb4",
-                       connect_args={
-                           "ssl":{"ssl_ca": "/etc/ssl/certs/ca-certificates.crt"}
-                       })
+engine = create_engine("mysql+pymysql://rajatvegan:Rajat.vegan1@database-1.c5iwck0oo59v.ap-south-1.rds.amazonaws.com/mydb")
 
 def execute_query1(count_query,params=None):
     with engine.connect() as conn:
