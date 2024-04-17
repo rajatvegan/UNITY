@@ -32,7 +32,7 @@ def view():
     
     configure_mongo(app)
     collection = get_mongo_collection()
-    results = collection.find() 
+    results = collection.aggregate([{ '$project': { '_id': 0 } }])
     documents = [document for document in results]
     return render_template("view.html", documents=documents, total_count=total_count, peoples=data_result, kanpur_count=city_count)
 
