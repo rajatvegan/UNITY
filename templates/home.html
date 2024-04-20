@@ -44,6 +44,25 @@
                 <button> RESUME </button>
             </a>
         </div>
+        
+        <script>
+            // Get all the button elements
+const buttons = document.querySelectorAll('button');
+
+// Add animation to the buttons
+buttons.forEach((button) => {
+  button.addEventListener('mouseover', (event) => {
+    event.target.style.transform = 'scale(1.1)';
+    event.target.style.boxShadow = '0px 6px 6px -3px rgba(0,0,0,0.1)';
+  });
+  button.addEventListener('mouseout', (event) => {
+    event.target.style.transform = 'scale(1)';
+    event.target.style.boxShadow = 'none';
+  });
+});
+
+
+        </script>
 
     </body>
 </html>
