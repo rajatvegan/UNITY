@@ -34,7 +34,7 @@ header {
     background-color: transparent;
 }
 
-.info, .links {
+.info{
     flex: 1;
 }
 
