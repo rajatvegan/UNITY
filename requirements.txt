@@ -6,3 +6,4 @@ waitress
 flask-pymongo
 flask-mail
 requests
+python-dotenv

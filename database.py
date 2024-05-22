@@ -1,6 +1,23 @@
 from sqlalchemy import create_engine, text
+import os
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
 
-engine = create_engine("mysql+pymysql://rajatvegan:Rajat.vegan1@mydb.cvge608e8a9w.ap-south-1.rds.amazonaws.com/mydb")
+env_paths = ['/etc/secrets/credentials.env', 'credentials.env']
+    
+# Load the first existing .env file
+for env_path in env_paths:
+    if os.path.exists(env_path):
+        load_dotenv(env_path)
+        break
+
+# Access the environment variables
+mysql_user = os.getenv('MYSQL_USER')
+mysql_password = os.getenv('MYSQL_PASSWORD')
+mysql_host = os.getenv('MYSQL_HOST')
+mysql_database = os.getenv('MYSQL_DATABASE')
+
+engine = create_engine(f"mysql+pymysql://{mysql_user}:{mysql_password}@{mysql_host}/{mysql_database}")
 
 def execute_query1(count_query,params=None):
     with engine.connect() as conn:
@@ -30,18 +47,24 @@ def add_data_to_db(data):
 # import the necessary modules
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
-import urllib.parse
+from urllib.parse import quote_plus
 from gridfs import GridFS
 
 # Initialize Flask-PyMongo
 mongo = PyMongo()
 
 def configure_mongo(app):
-    username = "rajatvegan"
-    password = "Rajat@123"
-    encoded_username = urllib.parse.quote_plus(username)
-    encoded_password = urllib.parse.quote_plus(password)
-    mongo_uri = f"mongodb+srv://{encoded_username}:{encoded_password}@cluster-mongodb.1kp9n43.mongodb.net/db1?retryWrites=true&w=majority"
+    
+    mongo_user = os.getenv('MONGO_USER')
+    mongo_password = os.getenv('MONGO_PASSWORD')
+    mongo_host = os.getenv('MONGO_HOST')
+    mongo_database = os.getenv('MONGO_DATABASE')
+
+    # encode the credentials 
+    mongo_user_encoded = quote_plus(mongo_user)
+    mongo_password_encoded = quote_plus(mongo_password)
+
+    mongo_uri = f"mongodb+srv://{mongo_user_encoded}:{mongo_password_encoded}@{mongo_host}/{mongo_database}?retryWrites=true&w=majority"
 
     app.config["MONGO_URI"] = mongo_uri
     app.config["MONGO_DBNAME"] = "db1"
