@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, text
 
-engine = create_engine("mysql+pymysql://rajatvegan:Rajat.vegan1@database-1.c5iwck0oo59v.ap-south-1.rds.amazonaws.com/mydb")
+engine = create_engine("mysql+pymysql://rajatvegan:Rajat.vegan1@mydb.cvge608e8a9w.ap-south-1.rds.amazonaws.com/mydb")
 
 def execute_query1(count_query,params=None):
     with engine.connect() as conn:
