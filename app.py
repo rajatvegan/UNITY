@@ -122,7 +122,7 @@ def keep_awake():
                 print(f"Failed to send keep-alive request. Status code: {response.status_code}")
         except requests.exceptions.RequestException as e:
             print(f"Error sending keep-alive request: {e}")
-        time.sleep(5)
+        time.sleep(300)
 
 if __name__ == '__main__':
     threading.Thread(target=keep_awake, daemon=True).start()
