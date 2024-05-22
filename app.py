@@ -107,25 +107,7 @@ def download_file(file_id):
     else:
         return 'File not found', 404
 
-
-import threading
-import time
-import requests
-def keep_awake():
-    while True:
-        try:
-            url = "https://rajatvegan.onrender.com" 
-            response = requests.get(url)
-            if response.status_code == 200:
-                print("Keep-alive request sent successfully.")
-            else:
-                print(f"Failed to send keep-alive request. Status code: {response.status_code}")
-        except requests.exceptions.RequestException as e:
-            print(f"Error sending keep-alive request: {e}")
-        time.sleep(300)
-
 if __name__ == '__main__':
-    threading.Thread(target=keep_awake, daemon=True).start()
     app.run(host='0.0.0.0', debug=True)
 
 
