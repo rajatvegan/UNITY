@@ -5,3 +5,4 @@ gunicorn
 waitress
 flask-pymongo
 flask-mail
+requests
