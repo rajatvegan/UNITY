@@ -15,13 +15,6 @@ pipeline {
             }
         }
 
-        // stage("installing docker"){
-        //     steps {
-        //         sh "sudo apt install docker.io"
-        //         sh "sudo apt install docker-compose"
-        //     }
-        // }
-
         stage("Build"){
             steps {
                 echo "Building the image"
@@ -40,23 +33,23 @@ pipeline {
             }
         }
 
-        // stage("Deploy"){
-        //     steps {
-        //         echo "Deploying the container"
-        //         sh "docker-compose down && docker-compose up -d"
-                
-        //     }
-        // }
-
-        stage("deploy to aws eks"){
+        stage("Deploy"){
             steps {
-                echo "deploying the pods"
-                script{
-                    kubeconfig(credentialsId: 'eks1', serverUrl: ''){
-                    sh "kubectl apply -f deployment-service.yml"
-                    }
-                }
+                echo "Deploying the container"
+                sh "docker-compose down && docker-compose up -d"
+                
             }
         }
+
+        // stage("deploy to aws eks"){
+        //     steps {
+        //         echo "deploying the pods"
+        //         script{
+        //             kubeconfig(credentialsId: 'eks1', serverUrl: ''){
+        //             sh "kubectl apply -f deployment-service.yml"
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
