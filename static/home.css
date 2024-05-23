@@ -22,17 +22,39 @@ p {
 
 @media (max-width: 767px) {
     .btn-block {
-        width: 100%;
-        margin: 10px 0;
+        width: 90%;
+        margin: 5px auto;
+        font-size: 14px;
     }
 
     iframe {
         width: 100%;
         height: auto;
-        margin: 10px 0;
     }
 
     p {
         font-size: 16px;
+    }
+
+    .embed-responsive-16by9 {
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    }
+
+    .embed-responsive-4by3 {
+        padding-bottom: 75%; /* 4:3 aspect ratio */
+    }
+}
+
+@media (min-width: 768px) {
+    .btn-block {
+        font-size: 16px;
+    }
+
+    .embed-responsive-16by9 {
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    }
+
+    .embed-responsive-4by3 {
+        padding-bottom: 75%; /* 4:3 aspect ratio */
     }
 }
