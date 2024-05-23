@@ -10,6 +10,13 @@ body {
     padding: 20px;
 }
 
+p {
+    color: #220334;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-left: 10px;
+}
+
 @media (max-width: 767px) {
     iframe {
         width: 100%;
