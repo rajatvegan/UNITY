@@ -1,11 +1,15 @@
 from flask import Flask, render_template, jsonify, request, send_file
 from database import  add_data_to_db,  execute_query1, execute_query2, configure_mongo, get_mongo_collection
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__,static_url_path='/static')
 
 @app.route("/")
 def home():
-    return render_template('home.html')
+    iframe_api_key = os.getenv('IFRAME_API_KEY')
+    notebook_api_key = os.getenv('NOTEBOOK_API_KEY')
+    return render_template('home.html', iframe_api_key=iframe_api_key, notebook_api_key=notebook_api_key)
 
 @app.route("/signup")
 def signup():
