@@ -2,10 +2,11 @@ body {
     background-image: url('/static/nature.jpg');
     background-size: cover;
     background-position: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
+
 .form-button, .signup-button, .view-button, .files-button, .resume-button {
-    position: fixed;
-    top: 10px;
     display: inline-block;
     padding: 10px 20px;
     background-color: #34C759; /* Green color */
@@ -37,23 +38,60 @@ body {
     background-color: transparent; /* Transparent background on hover */
 }
 
-.form-button {
-    left: 10px;
+.buttons-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
 }
 
-.signup-button {
-    left: 100px;
+@media (min-width: 768px) {
+    .form-button {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+    }
+    .signup-button {
+        position: fixed;
+        top: 10px;
+        left: 110px;
+    }
+    .view-button {
+        position: fixed;
+        top: 10px;
+        left: 220px;
+    }
+    .files-button {
+        position: fixed;
+        top: 10px;
+        left: 310px;
+    }
+    .resume-button {
+        position: fixed;
+        top: 10px;
+        left: 410px;
+    }
 }
 
-.view-button {
-    left: 210px;
-}
+@media (max-width: 767px) {
+    .iframe-container {
+        width: 100%;
+        height: auto;
+    }
+    
+    iframe {
+        width: 100%;
+        height: auto;
+        margin: 10px 0;
+    }
 
-.files-button {
-    left: 300px;
-}
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.resume-button {
-    left: 400px;
+    .form-button, .signup-button, .view-button, .files-button, .resume-button {
+        width: 90%;
+        margin: 10px 0;
+    }
 }
-

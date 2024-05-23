@@ -1,70 +1,42 @@
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <link rel="icon" type="image/png" href="static/logo.png">
-        <title> UNITY </title>
-        <link rel="stylesheet" href="static/home.css">
-    </head>
-
-    <iframe id=KBNSSVLQFV loading="eager" src= "{{ iframe_api_key }}&mode=embed_gold&host=beta&theme=light&opacity=100&font_header=Real+Head+Pro&size_header=30&font_body=Real+Head+Pro&size_body=16&font_labels=Real+Head+Pro&size_labels=14&font_button=Real+Head+Pro&size_button=16&c_fb=FFFFFF&c_ff=FFFFFF&c_fbd=888888&c_rb=FFFFFF&c_bb=228DD7&c_bt=FFFFFF&c_t=000000&s_ffo=100&s_rbo=100&s_bbo=100&s_f=minimalist&s_b=filled&s_t=2&s_to=1&s_r=2"
+<head>
+    <link rel="icon" type="image/png" href="static/logo.png">
+    <title>UNITY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/home.css">
+</head>
+<body>
+    <iframe id="KBNSSVLQFV" loading="eager" src="{{ iframe_api_key }}&mode=embed_gold&host=beta&theme=light&opacity=100&font_header=Real+Head+Pro&size_header=30&font_body=Real+Head+Pro&size_body=16&font_labels=Real+Head+Pro&size_labels=14&font_button=Real+Head+Pro&size_button=16&c_fb=FFFFFF&c_ff=FFFFFF&c_fbd=888888&c_rb=FFFFFF&c_bb=228DD7&c_bt=FFFFFF&c_t=000000&s_ffo=100&s_rbo=100&s_bbo=100&s_f=minimalist&s_b=filled&s_t=2&s_to=1&s_r=2"
         width="50%" height="500px" onMouseOver="this.style.boxShadow='0px 6px 6px -3px rgba(0,0,0,0.1)'" onMouseOut="this.style.boxShadow='none'" style="border:1px solid rgba(0, 0, 0, 1);transition:.3s;border-radius:4px;float:right;margin-right: 50px;" frameBorder="0"></iframe>
-        
 
-    <body>
-  
-        <div style="margin-top: 50px;margin-left: 10px;color: #220334;font-size: 20px;">
-            <p> 
-                Hi, I'm Rajat Kumar from Kanpur. Currently, I'm learning DevOps. I have created a monolithic Flask web app with MySQL and MongoDB databases. With the 'join' button, you can fill out a form, and that information will be saved into the MySQL server. Additionally, you can view the data. I've also added an AI chatbot with prompts configured for activism. </p>
-        </div>
+    <div style="margin-top: 50px;margin-left: 10px;color: #220334;font-size: 20px;">
+        <p>Hi, I'm Rajat Kumar from Kanpur. Currently, I'm learning DevOps. I have created a monolithic Flask web app with MySQL and MongoDB databases. With the 'join' button, you can fill out a form, and that information will be saved into the MySQL server. Additionally, you can view the data. I've also added an AI chatbot with prompts configured for activism.</p>
+    </div>
 
-        <iframe src= {{notebook_api_key}} height="800" style="margin: 20px; margin-left:400px; width: 100%; max-width: 950px;" frameborder="0" scrolling="auto" title="1_project-NYC-taxi"></iframe>
-        
+    <iframe src="{{ notebook_api_key }}" height="800" style="margin: 20px; width: 100%; max-width: 950px;" frameborder="0" scrolling="auto" title="1_project-NYC-taxi"></iframe>
 
-        <div>
-            <a href="form" class="form-button">
-         <button> JOIN </button>
-            </a>
-       </div>
-        <div>
-            <a href="signup" class="signup-button">
-                <button> SIGNUP </button>
-            </a>
-        </div>
-        <div>
-            <a href="view" class="view-button">
-                <button> VIEW </button>
-            </a>
-        </div>
-        <div>
-            <a href="files" class="files-button">
-                <button> FILES </button>
-            </a>
-        </div>
-        <div>
-            <a href="resume" class="resume-button">
-                <button> RESUME </button>
-            </a>
-        </div>
-        
-        <script>
-            // Get all the button elements
-const buttons = document.querySelectorAll('button');
+    <div class="buttons-container">
+        <a href="form" class="form-button"><button>JOIN</button></a>
+        <a href="signup" class="signup-button"><button>SIGNUP</button></a>
+        <a href="view" class="view-button"><button>VIEW</button></a>
+        <a href="files" class="files-button"><button>FILES</button></a>
+        <a href="resume" class="resume-button"><button>RESUME</button></a>
+    </div>
 
-// Add animation to the buttons
-buttons.forEach((button) => {
-  button.addEventListener('mouseover', (event) => {
-    event.target.style.transform = 'scale(1.1)';
-    event.target.style.boxShadow = '0px 6px 6px -3px rgba(0,0,0,0.1)';
-  });
-  button.addEventListener('mouseout', (event) => {
-    event.target.style.transform = 'scale(1)';
-    event.target.style.boxShadow = 'none';
-  });
-});
-
-
-        </script>
-
-    </body>
+    <script>
+        // Add animation to the buttons
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) => {
+            button.addEventListener('mouseover', (event) => {
+                event.target.style.transform = 'scale(1.1)';
+                event.target.style.boxShadow = '0px 6px 6px -3px rgba(0,0,0,0.1)';
+            });
+            button.addEventListener('mouseout', (event) => {
+                event.target.style.transform = 'scale(1)';
+                event.target.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
 </html>
