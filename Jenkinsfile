@@ -1,5 +1,6 @@
 pipeline {
-    agent {label 'default'}
+    // agent {label 'default'}
+    agent any
     
     stages{
         stage('Cleanup Workspace'){
