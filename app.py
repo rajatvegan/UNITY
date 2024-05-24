@@ -1,6 +1,5 @@
 from flask import Flask, render_template, jsonify, request, send_file
 from database import  add_data_to_db,  execute_query1, execute_query2, configure_mongo, get_mongo_collection
-from dotenv import load_dotenv
 import os
 
 app = Flask(__name__,static_url_path='/static')
