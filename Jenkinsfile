@@ -33,13 +33,13 @@ pipeline {
             }
         }
 
-        stage("Deploy"){
-            steps {
-                echo "Deploying the container"
-                sh "docker-compose down && docker-compose up -d"
+        // stage("Deploy"){
+        //     steps {
+        //         echo "Deploying the container"
+        //         sh "docker-compose down && docker-compose up -d"
                 
-            }
-        }
+        //     }
+        // }
 
         // stage("deploy to aws eks"){
         //     steps {
@@ -52,12 +52,16 @@ pipeline {
         //     }
         // }
 
-        // stage("deploy to gcp k8s"){
-        //     steps {
-        //         echo "deploying the pods on gks"
-        //         sh "kubectl apply -f deployment-service.yml"
-        //     }
-        // }
+        stage("deploy to gcp k8s"){
+            steps {
+                echo "deploying the pods on gks"
+                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                    sh "kubectl apply -f deployment-service.yml"
+                }
+            }
+        }
+
+
 
     }
 }
