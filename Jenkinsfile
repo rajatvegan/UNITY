@@ -56,8 +56,9 @@ pipeline {
             steps {
                 echo "deploying the pods on gks"
                 script{
-                    KubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                    sh "kubectl apply -f deployment-service.yml"}
+                    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                    sh "kubectl apply -f deployment-service.yml"
+                    }
                 }
             }
         }
