@@ -52,12 +52,12 @@ pipeline {
         //     }
         // }
 
-//         stage("deploy to gcp k8s"){
-//             steps {
-//                 echo "deploying the pods on gks"
-//                 sh "kubectl apply -f deployment-service.yml"
-//             }
-//         }
+        // stage("deploy to gcp k8s"){
+        //     steps {
+        //         echo "deploying the pods on gks"
+        //         sh "kubectl apply -f deployment-service.yml"
+        //     }
+        // }
 
-//     }
-// }
+    }
+}
