@@ -55,8 +55,8 @@ pipeline {
         stage("deploy to gcp k8s"){
             steps {
                 echo "deploying the pods on gks"
-                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                    sh "kubectl apply -f deployment-service.yml --validate=false"
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                    sh 'kubectl apply -f deployment-service.yml --validate=false'
                 }
             }
         }
