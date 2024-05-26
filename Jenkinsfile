@@ -1,6 +1,5 @@
 pipeline {
-    // agent {label 'default'}
-    agent any
+    agent any      // agent {label 'default'}
     
     stages{
         stage('Cleanup Workspace'){
@@ -34,17 +33,17 @@ pipeline {
             }
         }
 
-        stage("Deploy"){
-            steps {
-                echo "Deploying the container"
-                sh "docker-compose down && docker-compose up -d"
+        // stage("Deploy"){
+        //     steps {
+        //         echo "Deploying the container"
+        //         sh "docker-compose down && docker-compose up -d"
                 
-            }
-        }
+        //     }
+        // }
 
         // stage("deploy to aws eks"){
         //     steps {
-        //         echo "deploying the pods"
+        //         echo "deploying the pods on eks"
         //         script{
         //             kubeconfig(credentialsId: 'eks1', serverUrl: ''){
         //             sh "kubectl apply -f deployment-service.yml"
@@ -52,5 +51,13 @@ pipeline {
         //         }
         //     }
         // }
+
+        stage("deploy to gcp k8s"){
+            steps {
+                echo "deploying the pods on gks"
+                sh "kubectl apply -f deployment-service.yml"
+            }
+        }
+
     }
 }
