@@ -1,8 +1,5 @@
 pipeline {
     agent any      // agent {label 'default'}
-    environment {
-        KUBECONFIG_CRED = 'kubeconfig'
-    }
     
     stages{
         stage('Cleanup Workspace'){
@@ -57,10 +54,10 @@ pipeline {
 
         stage("deploy to gcp k8s"){
             steps {
-                echo "deploying the pods on gks"
-                withKubeConfig([credentialsId: 'env.KUBECONFIG_CRED']) {
+                echo "deploying the pods on gke"
+                withKubeConfig([credentialsId: 'kubeconfig']) {
                     sh 'kubectl config current-context'
-                    sh 'kubectl apply -f deployment-service.yml --validate=false'
+                    sh 'kubectl apply -f deployment-service.yml '
                 }
             }
         }
