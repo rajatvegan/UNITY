@@ -7,18 +7,6 @@ from pymongo import MongoClient
 from urllib.parse import quote_plus
 from gridfs import GridFS
 
-import boto3
-s3 = boto3.client('s3')
-
-# Download the file from S3
-response = s3.get_object(Bucket="credentials-bucket", Key="credentials.env")
-data = response['Body'].read().decode('utf-8')
-
-# Parse the environment variables
-for line in data.split('\n'):
-    key, value = line.split('=')
-    os.environ[key] = value
-
 env_paths = ['/etc/secrets/credentials.env', 'credentials.env']
     
 # Load the first existing .env file
@@ -100,3 +88,4 @@ def get_mongo_collection():
         return mongo.db.collection1
     except Exception as e:
         raise Exception(f"Error in get_mongo_collection: {str(e)}")
+

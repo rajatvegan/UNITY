@@ -7,4 +7,3 @@ flask-pymongo
 flask-mail
 requests
 python-dotenv
-boto3
