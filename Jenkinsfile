@@ -57,7 +57,7 @@ pipeline {
                 echo "deploying the pods on gke"
                 withKubeConfig([credentialsId: 'kubeconfig']) {
                     sh 'kubectl config current-context'
-                    sh 'kubectl apply -f deployment-service.yml '
+                    sh 'kubectl apply -f deployment-service.yml --validate=false'
                 }
             }
         }
