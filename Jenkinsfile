@@ -29,16 +29,16 @@ pipeline {
             }
         }
 
-       stage("Push to Docker Hub") {
-    steps {
-        echo "Pushing the image to Docker Hub"
-        withCredentials([usernamePassword(credentialsId: "dockerHub", passwordVariable: "dockerHubPass", usernameVariable: "dockerHubUser")]) {
-            sh "docker tag unity-app ${env.dockerHubUser}/unity-app:latest"
-            sh "echo ${env.dockerHubPass} | docker login -u ${env.dockerHubUser} --password-stdin"
-            sh "docker push ${env.dockerHubUser}/unity-app:latest"
+        stage("Push to Docker Hub"){
+            steps {
+                echo "Pushing the image to docker hub"
+                withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
+                sh "docker tag unity-app ${env.dockerHubUser}/unity-app:latest"
+                sh "docker login -u ${env.dockerHubUser} --password-stdin"
+                sh "docker push ${env.dockerHubUser}/unity-app:latest"
+                }
+            }
         }
-    }
-}
 
         // stage("Deploy"){
         //     steps {
