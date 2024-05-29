@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         PROJECT_ID = 'ptoject1-424215'
-        CLUSTER_NAME = 'autopilot-cluster-1'
+        CLUSTER_NAME = 'autopilot-cluster-2'
         LOCATION = 'asia-southeast2'
         CREDENTIALS = 'gcp-key'
     }

@@ -18,8 +18,6 @@ spec:
         ports:
         - containerPort: 800
         envFrom:
-        - secretRef:
-            name: credentials-secret
         - configMapRef:
             name: hostname-config
       imagePullSecrets:
