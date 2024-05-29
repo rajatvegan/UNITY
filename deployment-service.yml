@@ -17,8 +17,13 @@ spec:
         image: rajatvegan/unity-app:latest
         ports:
         - containerPort: 800
+        envFrom:
+        - secretRef:
+            name: credentials-secret
+        - configMapRef:
+            name: hostname-config
       imagePullSecrets:
-      - name: dockerhub-secret  # Reference the Docker Hub Secret here
+      - name: dockerhub-secret
 
 ---
 
@@ -32,5 +37,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 800  # Adjust the target port to match the container port
-  type: LoadBalancer  # Expose the service externally
+      targetPort: 800
+  type: LoadBalancer
