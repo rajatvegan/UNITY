@@ -1,5 +1,12 @@
 pipeline {
     agent any      // agent {label 'default'}
+
+    environment {
+        PROJECT_ID = 'ptoject1-424215'
+        CLUSTER_NAME = 'autopilot-cluster-1'
+        LOCATION = 'asia-southeast2'
+        CREDENTIALS = 'gcp-key'
+    }
     
     stages{
         stage('Cleanup Workspace'){
@@ -54,11 +61,8 @@ pipeline {
 
         stage("deploy to gcp k8s"){
             steps {
-                echo "deploying the pods on gke"
-                withKubeConfig([credentialsId: 'kubeconfig']) {
-                    sh 'kubectl config current-context'
-                    sh 'kubectl apply -f deployment-service.yml --validate=false'
-                }
+                echo "deploying the dockerhub image on gke"
+                step([$class:'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment-service.yml', credentialsId: env.CREDENTIALS, verifyDeployments: true ])
             }
         }
 
