@@ -48,23 +48,23 @@ pipeline {
         //     }
         // }
 
-        // stage("deploy to aws eks"){
-        //     steps {
-        //         echo "deploying the pods on eks"
-        //         script{
-        //             kubeconfig(credentialsId: 'eks1', serverUrl: ''){
-        //             sh "kubectl apply -f deployment-service.yml"
-        //             }
-        //         }
-        //     }
-        // }
-
-        stage("deploy to gcp k8s"){
+        stage("deploy to aws eks"){
             steps {
-                echo "deploying the dockerhub image on gke"
-                step([$class:'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment-service.yml', credentialsId: env.CREDENTIALS, verifyDeployments: true ])
+                echo "deploying the pods on eks"
+                script{
+                    kubeconfig(credentialsId: 'eks1', serverUrl: ''){
+                    sh "kubectl apply -f deployment-service.yml"
+                    }
+                }
             }
         }
+
+        // stage("deploy to gcp k8s"){
+        //     steps {
+        //         echo "deploying the dockerhub image on gke"
+        //         step([$class:'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment-service.yml', credentialsId: env.CREDENTIALS, verifyDeployments: true ])
+        //     }
+        // }
 
 
 
