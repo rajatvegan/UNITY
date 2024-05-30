@@ -50,12 +50,10 @@ pipeline {
 
         stage("deploy to aws eks"){
             steps {
+                echo "connecting to eks cluster"
+                script{sh "aws eks update-kubeconfig --name eks-cluster1"}
                 echo "deploying the pods on eks"
-                script{
-                    kubeconfig(credentialsId: 'eks1', serverUrl: ''){
-                    sh "kubectl apply -f deployment-service.yml"
-                    }
-                }
+                script{sh "kubectl apply -f deployment-service.yml"}
             }
         }
 
