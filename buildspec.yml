@@ -13,19 +13,18 @@ phases:
       - echo Running unit tests...
       # Add commands here to run your unit tests if you have any
 
-  post_build:
-    commands:
-      - echo Installing Docker...
-      - apt-get install -y docker.io
-      - echo Building Docker image...
-      - docker build -t flask-app .
-      - echo Tagging Docker image...
-      - docker tag flask-app:latest YOUR_ECR_REGISTRY_URL/flask-app:latest
-      - echo Pushing Docker image to ECR...
-      - $(aws ecr get-login --no-include-email --region YOUR_REGION)
-      - docker push YOUR_ECR_REGISTRY_URL/flask-app:latest
+  # post_build:
+  #   commands:
+  #     - echo Installing Docker...
+  #     - apt-get install -y docker.io
+  #     - echo Building Docker image...
+  #     - docker build -t flask-app .
+  #     - echo Tagging Docker image...
+  #     - docker tag flask-app:latest YOUR_ECR_REGISTRY_URL/flask-app:latest
+  #     - echo Pushing Docker image to ECR...
+  #     - $(aws ecr get-login --no-include-email --region YOUR_REGION)
+  #     - docker push YOUR_ECR_REGISTRY_URL/flask-app:latest
 
 artifacts:
   files:
     - '**/*'
-  discard-paths: yes
