@@ -3,24 +3,35 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.11
+      docker: 19
     commands:
-      - echo "[Install] Installing dependencies..."
-      - pip install -r requirements.txt
+      - echo Installing dependencies...
+      - apt-get update -y
+      - apt-get install -y jq python-pip
+      - pip install --upgrade awscli
 
   pre_build:
     commands:
-      - echo "[Pre-Build] Executing pre-build commands..."
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 730335356144.dkr.ecr.ap-south-1.amazonaws.com
+      - REPOSITORY_URI=730335356144.dkr.ecr.ap-south-1.amazonaws.com/image-repo1
+      - echo Build started on `date`
 
   build:
     commands:
-      - echo "[Build] Building and testing the Flask app..."
-      - python -m unittest discover  # Replace with your test command if applicable
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$(date +%Y%m%d%H%M%S)
 
   post_build:
     commands:
-      - echo "[Post-Build] Executing post-build commands..."
+      - echo Pushing the Docker image...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$(date +%Y%m%d%H%M%S)
+      - echo Build completed on `date`
 
 artifacts:
-  files: '**/*'
+  files:
+    - '**/*'
+  discard-paths: yes
 
