@@ -4,29 +4,26 @@ phases:
   install:
     commands:
       - echo Installing dependencies...
-      - apt-get update -y
-      - apt-get install -y jq python-pip
-      - pip install --upgrade awscli
-
-  pre_build:
-    commands:
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 730335356144.dkr.ecr.ap-south-1.amazonaws.com
-      - REPOSITORY_URI=730335356144.dkr.ecr.ap-south-1.amazonaws.com/image-repo1
-      - echo Build started on `date`
+      - apt-get update
+      - apt-get install -y python3-pip python3-venv
+      - pip3 install -r requirements.txt
 
   build:
     commands:
-      - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$(date +%Y%m%d%H%M%S)
+      - echo Running unit tests...
+      # Add commands here to run your unit tests if you have any
 
   post_build:
     commands:
-      - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$(date +%Y%m%d%H%M%S)
-      - echo Build completed on `date`
+      - echo Installing Docker...
+      - apt-get install -y docker.io
+      - echo Building Docker image...
+      - docker build -t flask-app .
+      - echo Tagging Docker image...
+      - docker tag flask-app:latest YOUR_ECR_REGISTRY_URL/flask-app:latest
+      - echo Pushing Docker image to ECR...
+      - $(aws ecr get-login --no-include-email --region YOUR_REGION)
+      - docker push YOUR_ECR_REGISTRY_URL/flask-app:latest
 
 artifacts:
   files:
