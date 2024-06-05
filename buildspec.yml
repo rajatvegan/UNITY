@@ -5,9 +5,7 @@ phases:
     commands:
       - echo Installing dependencies...
       - apt-get update
-      - apt-get install -y python3-pip python3.12-venv
-      - python3 -m venv myenv
-      - source myenv/bin/activate
+      - apt-get install -y python3-pip
       - pip3 install -r requirements.txt
 
 
