@@ -3,9 +3,6 @@
 # Update package lists
 sudo apt-get update -y
 
-# Install Python and pip if not already installed
-sudo apt-get install -y python3 python3-pip
-
 # Navigate to the application directory
 cd /home/ubuntu/UNITY
 
