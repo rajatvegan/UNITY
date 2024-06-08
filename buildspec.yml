@@ -3,32 +3,29 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing dependencies...
+      - echo Installing Docker...
       - apt-get update
-      - apt-get install -y python3-pip
-      - python3 -m venv venv
-      - ./venv/bin/pip install -r requirements.txt
+      - apt-get install -y docker.io
 
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --no-include-email --region ap-south-1)
 
   build:
     commands:
-      - echo Running unit tests...
-      # Add commands here to run your unit tests if you have any
+      # Build the Docker image
+      - echo "Building Docker image..."
+      - export IMAGE_REPO_NAME="my-flask-app"
+      - export IMAGE_TAG=$(date +'%Y-%m-%d_%H%M')
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG 730335356144.dkr.ecr.ap-south-1.amazonaws.com/image-repo1:$IMAGE_TAG
 
-  # post_build:
-  #   commands:
-  #     - echo Installing Docker...
-  #     - apt-get install -y docker.io
-  #     - echo Building Docker image...
-  #     - docker build -t flask-app .
-  #     - echo Tagging Docker image...
-  #     - docker tag flask-app:latest YOUR_ECR_REGISTRY_URL/flask-app:latest
-  #     - echo Pushing Docker image to ECR...
-  #     - $(aws ecr get-login --no-include-email --region YOUR_REGION)
-  #     - docker push YOUR_ECR_REGISTRY_URL/flask-app:latest
-
-artifacts:
-  files:
-    - '**/*'
-  discard-paths: no
+  post_build:
+    commands:
+      # Push the Docker image to Amazon ECR
+      - echo "Pushing Docker image to Amazon ECR..."
+      - docker push 730335356144.dkr.ecr.ap-south-1.amazonaws.com/image-repo1:$IMAGE_TAG
+      - echo "Docker image pushed successfully to Amazon ECR"
 
