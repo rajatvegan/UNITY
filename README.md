@@ -7,7 +7,7 @@ Main features of this project:
 - Join a form to fill out data and save it to a MySQL database.
 - View the data saved in the MySQL database.
 - Add AI chatbot with prompts configured for activism.
-- Deployed the app multiple times on AWS Elastic Beanstalk using AWS CodePipeline and EKS.
+- Deployed the app multiple times on AWS tools like Elastic Beanstalk,code deploy, ECS, EKS using AWS CodePipeline.
 - Currently deployed on Render (PaaS cloud provider) managed platform.
 
 You can open this app by clicking on [Open this app](https://rajatvegan.onrender.com/)
