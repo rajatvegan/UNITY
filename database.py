@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine, text
+import pymysql
 import os
 from dotenv import load_dotenv
 
@@ -20,8 +21,9 @@ mysql_user = os.getenv('MYSQL_USER')
 mysql_password = os.getenv('MYSQL_PASSWORD')
 mysql_host = os.getenv('MYSQL_HOST')
 mysql_database = os.getenv('MYSQL_DATABASE')
+port = '23472'
 
-engine = create_engine(f"mysql+pymysql://{mysql_user}:{mysql_password}@{mysql_host}/{mysql_database}")
+engine = create_engine(f"mysql+pymysql://{mysql_user}:{mysql_password}@{mysql_host}:{port}/{mysql_database}?charset=utf8mb4")
 
 def execute_query1(count_query,params=None):
     try:
